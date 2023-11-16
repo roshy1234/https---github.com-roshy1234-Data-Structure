@@ -2,7 +2,7 @@
 
 void isempty();
 void isfull();
-int dequeue();
+void dequeue();
 void enqueue();
 void show();
 
@@ -52,23 +52,24 @@ void isfull() {
 
 void enqueue() {
     int x;
-    printf("Ente the element to add to circular queue:");
     scanf("%d",&x);
     if((F == (R + 1) % SIZE)) {
         printf("\nOverflow error\n");
     }
     else if (F==-1 && R==-1) {
+        printf("Ente the element to add to circular queue:");
         R=0;
         F=0;
         cq[R]=x;
     }
     else {
+        printf("Ente the element to add to circular queue:");
         R=(R+1)%SIZE;
         cq[R] = x;
     }
 }
 
-int dequeue() {
+void dequeue() {
     if(F==-1 && R==-1) {
         printf("\nUnderflow error\n");
         return -1;
@@ -77,19 +78,22 @@ int dequeue() {
         int y = cq[F];
         F=-1;
         R=-1;
-        return y;
+        printf("The dequeued element is %d",y);
     }
     else {
         int x = cq[F];
         F=(F+1)%SIZE;
-        return x;
+        printf("The dequeued element is %d",x);
     }
 }
 
 void show() {
-    for(int i=0;i<SIZE;i++) {
+    if(F==-1 && R==-1) printf("Queue is empty");
+    int i = F;
+    while(i!=R) {
         printf("%d ",cq[i]);
+        i = (i+1)%SIZE;
     }
-    printf("\n");
+    printf("%d",cq[R]);
 }
 
