@@ -2,8 +2,9 @@
 #include <stdlib.h>
 
 void push();
-int pop();
+void pop();
 void display();
+int peek();
 
 struct node {
     int data;
@@ -29,6 +30,9 @@ void main() {
                 display();
                 break;
             case 4:
+                peek();
+                break;
+            case 5:
                 exit(0);
                 break;
             default:
@@ -56,7 +60,7 @@ void push() {
         }
     }
 
-int pop() {
+void pop() {
     if(head==NULL) printf("Stack is empty\n");
     else if(head==top) {
         free(top);
