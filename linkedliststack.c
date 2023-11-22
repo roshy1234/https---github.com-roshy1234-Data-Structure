@@ -57,12 +57,17 @@ void push() {
     }
 
 int pop() {
-    if(head==NULL) printf("Stack is empty");
+    if(head==NULL) printf("Stack is empty\n");
+    else if(head==top) {
+        free(top);
+        head=NULL;
+    }
     else {
         temp=head;
         while(temp!=NULL) {
             if(temp->next==top) {
                 printf("The popped element is %d\n",top->data);
+                free(top);
                 top=temp;
                 top->next=NULL;
                 break;
