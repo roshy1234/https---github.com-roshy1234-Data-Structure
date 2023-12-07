@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define s 10
+int a[s];
+int k,mid;
+
+int bs(int l,int h);
+
+void main() {
+    int n;
+    printf("Enter the size of the array:");
+    scanf("%d",&n);
+    printf("Enter the array elements:");
+    for(int i=0;i<n;i++) {
+        scanf("%d",&a[i]);
+    }
+    printf("Enter the element to search:");
+    scanf("%d",&k);
+    printf("The searched element is at position:%d",bs(0,n-1));
+}
+
+int bs(int l, int h) {
+    if (l > h) {
+        printf("Element not found in the array.\n");
+        return -1;
+    }
+    mid = (l+h)/2;
+    if(a[mid]==k) return mid;
+    if(a[mid]<k) l=mid+1;
+    else h=mid-1;
+    return bs(l,h);
+}
