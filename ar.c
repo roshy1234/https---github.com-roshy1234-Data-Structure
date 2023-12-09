@@ -3,7 +3,8 @@
 void main()
 {
     int n,digit=0,nd=0,r;
-    for(int n=100;n<=1000;n++)
+    int n;
+    for(n=100; n<=1000; n++)
     {
     int a=n;
     while(a>0)

@@ -4,21 +4,23 @@
 #define SIZE 100
 
 char pop();
+void push(char x);
 int precedence(char symbol);
 void intoPost();
-void push(char x);
 int isempty();
 
 char stack[SIZE];
 char infix[SIZE] , postfix[SIZE];
 int top = -1;
 
-void main() {
+int main() {
    printf("Enter the infix expression:");
-   scanf("%s",&infix);
+   scanf("%s", infix);
    intoPost();
    printf("The postfix expression is:");
-   printf("%s",postfix);
+   for(int i = 0; i < strlen(postfix); i++)
+      printf("%c", postfix[i]);
+   return 0;
 }
 
 void intoPost() {
@@ -31,7 +33,7 @@ void intoPost() {
             push(symbol);
             break;
          case ')':
-            while(next = pop() != '(') {
+            while((next = pop()) != '(') {
             postfix[j++] = next;
             }
             break;
@@ -51,26 +53,14 @@ void intoPost() {
    while(isempty()!=1) {
       postfix[j++] = pop();
    }
-   postfix[j] = '\0';
+   postfix[j++] = '\0';
 }
 
 
-int precedence(char symbol) {
-   switch(symbol) {
-      case '+':
-      case '-':
-         return 1;
-         break;
-      case '*':
-      case '/':
-         return 2;
-         break;
-      case '^':
-         return 3;
-         break;
-      default:
-         return 0;
-   }
+int precedence(char s) {
+   if(s=='(') return 3;
+   else if(s=='*' || s=='/') return 2;
+   else if(s=='+' || s=='-') return 1;
 }
 
 char pop() {
@@ -84,8 +74,10 @@ char pop() {
 }
 
 void push(char x) {
-   if(top==SIZE-1)
+   if(top==SIZE-1) {
       printf("Stack is full");
+      exit(1);
+   }
    else {
       top++;
       stack[top]=x;

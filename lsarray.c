@@ -2,15 +2,15 @@
 void main()
 {
     int n,b,f;
-    printf("Enter the number of elements:");
+    printf("Enter the array size");
     scanf("%d",&n);
     int a[n];
+    printf("Enter array :");
     for(int i=0;i<n;i++)
     {
-        printf("Enter %d element:",i+1);
         scanf("%d",&a[i]);
     }
-    printf("Enter the number to be searched:");
+    printf("Enter search key:");
     scanf("%d", &b);
     //linear search algorithm
     f=0;
@@ -18,13 +18,11 @@ void main()
     {
         if(a[j]==b)
         {
-        printf("%d is the element of index %d",b,j);
+        printf("%d is found at %d",b,j);
         f=1;
         }
     }
-    if(f==0)
-    {
-        printf("%d not found in array",b);
-    }
+    if(f==0) printf("%d not found",b);
+
 }
     
