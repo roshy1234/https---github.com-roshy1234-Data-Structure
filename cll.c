@@ -157,22 +157,6 @@ void traverse() {
       while(t != head);
       }
      }
-     
-      
-void search() {
-    int k;
-    printf("Enter element to search:");
-    scanf("%d",&k);
-    temp=head;
-    while(temp->next != head) {
-       if(temp->data==k) {
-          printf("Element found\n");
-          break;
-       }
-       else printf("Element not found\n");
-       temp=temp->next;
-      }
-     }
     
 void imid() {
     int pos;
