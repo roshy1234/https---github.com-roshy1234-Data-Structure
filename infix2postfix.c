@@ -16,11 +16,21 @@ int pop() {
 //precedence function
 int pri(char symbol) {
     if(symbol=='^')
-        return 3;
+        return 6;
     else if(symbol=='*' || symbol=='/')
-        return 2;
+        return 3;
     else if(symbol=='+' || symbol=='-')
         return 1;
+    else
+        return 0;
+}
+int prs(char symbol) {
+    if(symbol=='^')
+        return 5;
+    else if(symbol=='*' || symbol=='/')
+        return 4;
+    else if(symbol=='+' || symbol=='-')
+        return 2;
     else
         return 0;
 }
@@ -44,7 +54,7 @@ void main() {
             pop();
         }
         else {
-            while(pri(stack[top])>=pri(ch))
+            while(prs(stack[top])>=pri(ch))
                 postfix[p++]=pop();
             push(ch);
         }
