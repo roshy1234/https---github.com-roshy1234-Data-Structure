@@ -41,7 +41,6 @@ void main() {
     //inputting the infix expression
     printf("Enter the infix expression : "); 
     scanf("%s",infix);
-    push('#');
     //converting the infix expression to postfix expression
     while((ch=infix[i++])!='\0') {
         if(ch=='(')
@@ -54,13 +53,13 @@ void main() {
             pop();
         }
         else {
-            while(prs(stack[top])>=pri(ch))
+            while(pri(ch)<=prs(stack[top]))
                 postfix[p++]=pop();
             push(ch);
         }
     }
     //popping the remaining elements from the stack to the postfix expression
-    while(stack[top]!='#')
+    while(top!=-1)
         postfix[p++]=pop();
     postfix[p]='\0';
     //displaying the postfix expression
