@@ -26,11 +26,13 @@ int pri(char symbol) {
 }
 // main function
 void main() {
-    char infix[50],postfix[50],ch,elem;
-    int i=0,p=0;
-    printf("Enter the infix expression : ");
+    char infix[50],postfix[50],ch;
+    int i=0,p=0; //traversal variables for infix and postfix expressions
+    //inputting the infix expression
+    printf("Enter the infix expression : "); 
     scanf("%s",infix);
     push('#');
+    //converting the infix expression to postfix expression
     while((ch=infix[i++])!='\0') {
         if(ch=='(')
             push(ch);
@@ -39,7 +41,7 @@ void main() {
         else if(ch==')') {
             while(stack[top]!='(')
                 postfix[p++]=pop();
-            elem=pop();
+            pop();
         }
         else {
             while(pri(stack[top])>=pri(ch))
