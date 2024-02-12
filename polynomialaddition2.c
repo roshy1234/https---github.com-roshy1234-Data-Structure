@@ -72,6 +72,7 @@ int main() {
         c[i].coeiff=a[i].coeiff + b[i].coeiff;
         c[l++].exp=i;
     }    
+    //printing the sum of two polynomials
     for(int i=d;i>=0;i--) {
         if (i!=0){
             printf("%dx^%d",c[i].coeiff,c[i].exp);
