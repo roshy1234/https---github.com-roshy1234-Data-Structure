@@ -5,7 +5,6 @@
 
 int pop();
 void push(int x);
-int isempty();
 int eval();
 
 int top=-1;
@@ -14,15 +13,15 @@ char postfix[SIZE];
 
 void main() {
     printf("Enter the postfix expression:");
-    scanf("%s",&postfix);
+    scanf("%s",postfix);
     printf("The result of evaluation is %d",eval());
 }
 
 int eval() {
-    int x,y;
-    for(int i=0;i<strlen(postfix);i++) {
-        char symbol = postfix[i];
-        switch(symbol) {
+    int x,y,i=0;
+    char ch;
+    while((ch=postfix[i++])!='\0'){
+        switch(ch) {
             case '+':
                 x = pop();
                 y = pop();
@@ -49,7 +48,7 @@ int eval() {
                 push((y ^ x));
                 break;
             default:
-                push(symbol-'0');
+                push(ch-'0');
         }
     }
     return pop();
@@ -69,7 +68,6 @@ void push(int x) {
     if(top==SIZE-1)
         printf("Stack is full");
     else {
-        top++;
-        stack[top]=x;
+        stack[++top]=x;
     }
 }
